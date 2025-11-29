@@ -1,15 +1,16 @@
 /* ===== Variables de Color ===== */
 :root {
-    --color-primary: #ffffff;
-    --color-secondary: #f8f8f8;
-    --color-accent: #d32f2f;
-    --color-accent-light: #ef5350;
-    --color-text-dark: #333333;
-    --color-text-light: #666666;
-    --color-border: #e0e0e0;
+    --color-primary: #3a0d17;
+    --color-secondary: #5c1a2a;
+    --color-accent: #d4a574;
+    --color-accent-light: #e8c9a8;
+    --color-text-dark: #f5e6d3;
+    --color-text-light: #e6d5c8;
+    --color-border: #8b2d3f;
     --font-elegant: 'Playfair Display', 'Georgia', serif;
     --font-body: 'Lato', 'Arial', sans-serif;
     --transition: all 0.3s ease;
+    --color-overlay: rgba(58, 13, 23, 0.75);
 }
 
 /* ===== Reset y Estilos Base ===== */
@@ -27,11 +28,21 @@ body {
     font-family: var(--font-body);
     color: var(--color-text-dark);
     background-color: var(--color-primary);
+    background-image: url('../img/damasco.png');
+    background-attachment: fixed;
+    background-size: auto;
+    background-repeat: repeat;
     line-height: 1.6;
+    position: relative;
 }
 
 /* ===== Tipografía ===== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-elegant);
     color: var(--color-text-dark);
     margin-bottom: 1.5rem;
@@ -155,7 +166,12 @@ section {
 
 /* ===== Sección Inicio ===== */
 #inicio {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background:
+        linear-gradient(135deg, rgba(58, 13, 23, 0.8) 0%, rgba(92, 26, 42, 0.8) 100%),
+        url('../img/damasco.png'),
+        url('../img/foto_javi_laura_cancun_bw.jpeg') center top / cover no-repeat;
+    background-attachment: fixed, fixed, scroll;
+    background-size: auto, auto, contain;
     text-align: center;
     padding: 6rem 2rem;
     min-height: 90vh;
@@ -163,21 +179,43 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+/* Pseudo-elemento para la foto de fondo con mejor control */
+#inicio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    background: url('../img/foto_javi_laura_cancun_bw.jpeg') center top / cover no-repeat;
+    background-attachment: scroll;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#inicio>* {
+    position: relative;
+    z-index: 1;
 }
 
 #inicio h1 {
     font-size: 4.5rem;
-    color: var(--color-text-dark);
+    color: var(--color-accent-light);
     margin-bottom: 0.5rem;
     animation: slideInDown 0.8s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 #inicio h1::after {
     content: '';
     display: block;
     width: 100px;
-    height: 3px;
-    background-color: var(--color-accent);
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
     margin: 1.5rem auto;
     border-radius: 2px;
 }
@@ -201,6 +239,7 @@ section {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -208,8 +247,16 @@ section {
 }
 
 /* ===== Secciones Generales ===== */
+section {
+    background: linear-gradient(135deg, rgba(58, 13, 23, 0.8) 0%, rgba(92, 26, 42, 0.8) 100%), url('../img/damasco.png');
+    background-attachment: fixed;
+    background-size: auto;
+}
+
 section:nth-child(even) {
-    background-color: var(--color-secondary);
+    background: linear-gradient(135deg, rgba(92, 26, 42, 0.85) 0%, rgba(58, 13, 23, 0.85) 100%), url('../img/damasco.png');
+    background-attachment: fixed;
+    background-size: auto;
 }
 
 section p {
@@ -241,12 +288,12 @@ section p {
 }
 
 .event-card {
-    background-color: var(--color-primary);
+    background: linear-gradient(135deg, rgba(58, 13, 23, 0.9) 0%, rgba(92, 26, 42, 0.9) 100%);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(212, 165, 116, 0.1);
     transition: var(--transition);
-    border-left: 4px solid var(--color-accent);
+    border-left: 5px solid var(--color-accent);
 }
 
 .event-card:hover {
@@ -305,21 +352,22 @@ input,
 select,
 textarea {
     padding: 1rem 1.2rem;
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-accent);
     border-radius: 4px;
     font-family: var(--font-body);
     font-size: 1rem;
     color: var(--color-text-dark);
     transition: var(--transition);
-    background-color: var(--color-primary);
+    background-color: rgba(245, 230, 211, 0.95);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+    border-color: var(--color-accent-light);
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+    background-color: rgba(245, 230, 211, 1);
 }
 
 textarea {
@@ -346,8 +394,9 @@ input[type="submit"] {
 button:hover,
 input[type="submit"]:hover {
     background-color: var(--color-accent-light);
+    color: var(--color-primary);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(211, 47, 47, 0.25);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
 }
 
 button:active,
@@ -555,4 +604,265 @@ a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-accent-light);
+}
+
+/* ===== Intro tipo sobre ===== */
+
+body.intro-active {
+    overflow: hidden;
+    background-color: var(--color-secondary);
+    background-image: none;
+}
+
+/* Capa que cubre toda la pantalla al inicio */
+#intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    pointer-events: auto;
+    animation: introFadeOut 0.9s ease 3.8s forwards;
+    perspective: 1400px;
+}
+
+/* CONTENEDOR DEL SOBRE */
+.intro-envelope {
+    position: relative;
+    width: min(82vw, 540px);
+    height: min(58vw, 320px);
+    /* “rectángulo” exterior del sobre (parte trasera) */
+    background: #f8f1e6;
+    border-radius: 14px;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.45),
+        0 0 0 2px rgba(212, 165, 116, 0.65);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    overflow: visible;
+    animation: envelopeZoom 1.6s ease-in-out 2.4s forwards;
+}
+
+/* Base trasera del sobre (imitando el cerrado verde) */
+.intro-envelope::before {
+    content: '';
+    position: absolute;
+    inset: 10% 8% 10%;
+    background: #f8f1e6;
+    border-radius: 12px;
+    box-shadow:
+        inset 0 0 0 1px rgba(212, 165, 116, 0.7);
+    /* leve dibujo de las solapas inferiores */
+    background-image:
+        linear-gradient(135deg, transparent 48%, rgba(0, 0, 0, 0.08) 49%, transparent 51%),
+        linear-gradient(225deg, transparent 48%, rgba(0, 0, 0, 0.08) 49%, transparent 51%);
+    background-size: 50% 45%;
+    background-position: left bottom, right bottom;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* PANEL INTERIOR (bolsillo) CON DAMASCO: al principio oculto (sobre cerrado) */
+.intro-envelope-inner {
+    position: absolute;
+    inset: 14% 10% 12%;
+    background-image: url('../img/damasco.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    z-index: 1;
+    animation: pocketReveal 1.4s ease 1.3s forwards;
+}
+
+/* Tarjeta crema con el texto: al principio oculta, aparece al abrir */
+.intro-envelope-body {
+    position: absolute;
+    inset: 26% 14% 18%;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    opacity: 0;
+    animation: cardFadeIn 1s ease 1.7s forwards;
+}
+
+/* Tarjeta física */
+.intro-envelope-body::before {
+    content: '';
+    position: absolute;
+    inset: 8%;
+    background: #fdf7ef;
+    border-radius: 12px;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(212, 165, 116, 0.9);
+    z-index: 0;
+}
+
+/* Texto de la tarjeta */
+.intro-names,
+.intro-date {
+    position: relative;
+    z-index: 1;
+}
+
+.intro-names {
+    font-family: var(--font-elegant);
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.4rem;
+}
+
+.intro-date {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #b08a6a;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* FLAP SUPERIOR (parte externa crema) */
+.intro-envelope-flap {
+    position: absolute;
+    top: 6%;
+    left: 10%;
+    right: 10%;
+    height: 55%;
+    background: #f8f1e6;
+    clip-path: polygon(0 0, 100% 0, 50% 82%);
+    transform-origin: top center;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    animation: flapOpenGreen 1.4s cubic-bezier(0.23, 0.84, 0.41, 1.16) 0.5s forwards;
+}
+
+/* Interior del flap (forro damasco) */
+.intro-envelope-flap::before {
+    content: '';
+    position: absolute;
+    inset: 7%;
+    background-image: url('../img/damasco.png');
+    background-size: cover;
+    background-position: center;
+    clip-path: inherit;
+    backface-visibility: visible;
+    transform: rotateX(180deg);
+    /* cara interior para cuando el flap se abre */
+}
+
+/* === ANIMACIONES === */
+
+/* Flap: de cerrado (como sobre verde) a abierto y quedándose arriba */
+@keyframes flapOpenGreen {
+    0% {
+        transform: rotateX(0deg);
+        /* cerrado apuntando hacia abajo */
+    }
+
+    45% {
+        transform: rotateX(-110deg);
+        /* apertura */
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        transform: rotateX(-140deg);
+        /* se queda abierto, visible por detrás */
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* Aparición del bolsillo interior damasco cuando el flap ya va abriéndose */
+@keyframes pocketReveal {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Aparición suave de la tarjeta crema con el texto */
+@keyframes cardFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Zoom total del sobre antes de irse y dar paso a la web */
+@keyframes envelopeZoom {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Fade del overlay completo */
+@keyframes introFadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Responsive fino para móviles */
+@media (max-width: 480px) {
+    .intro-envelope {
+        width: 94vw;
+        height: 62vw;
+    }
+
+    .intro-envelope::before {
+        inset: 12% 8% 12%;
+    }
+
+    .intro-envelope-inner {
+        inset: 18% 11% 14%;
+    }
+
+    .intro-envelope-body {
+        inset: 30% 15% 20%;
+        padding: 1.6rem 1.1rem;
+    }
+
+    .intro-names {
+        font-size: 1.8rem;
+    }
+
+    .intro-date {
+        font-size: 0.85rem;
+    }
 }
