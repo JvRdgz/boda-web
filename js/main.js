@@ -68,3 +68,37 @@
         });
     });
 })();
+
+/**
+ * const skipBtn = document.getElementById('skip-intro');
+    if (skipBtn) {
+        skipBtn.addEventListener('click', finishIntro);
+    }
+ */
+// Intro tipo sobre: gestionar aparición y desaparición
+window.addEventListener('load', () => {
+    const overlay = document.getElementById('intro-overlay');
+    if (!overlay) return;
+
+    document.body.classList.add('intro-active');
+
+    const finishIntro = () => {
+        if (!overlay.parentElement) return;
+        document.body.classList.remove('intro-active');
+        overlay.remove();
+    };
+
+    // Botón de saltar intro (si lo activas en el HTML)
+    const skipBtn = document.getElementById('skip-intro');
+    if (skipBtn) {
+        skipBtn.addEventListener('click', finishIntro);
+    }
+
+    overlay.addEventListener('animationend', (e) => {
+        if (e.animationName === 'introFadeOut') {
+            finishIntro();
+        }
+    });
+
+    setTimeout(finishIntro, 6000); // fallback por si acaso
+});
