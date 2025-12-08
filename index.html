@@ -57,14 +57,12 @@
             <p>Hora: 19:00</p>
         </section>
 
-        <!-- Galería eliminada -->
-
         <section id="confirmacion">
             <h2>Confirmación de Asistencia</h2>
             <form>
                 <input type="text" placeholder="Tu nombre y apellidos" required>
                 <select required>
-                    <option value="">¿Asistirás?</option>
+                    <option value="" disabled selected hidden>¿Asistirás?</option>
                     <option value="si">Sí, asistiré</option>
                     <option value="no">No podré asistir</option>
                 </select>
@@ -78,8 +76,28 @@
         <p id="founder">Creada por Javi, con mucho amor ;-)</p>
     </footer>
 
+    <!-- Player de YouTube API (para música de fondo) -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <!-- JS separado -->
+    <script src="js/music.js" defer></script>
     <script src="js/main.js" defer></script>
+
+    <!-- Botón flotante de música -->
+    <button id="music-toggle" class="music-off" aria-pressed="false" aria-label="Reproducir / Silenciar música de fondo">
+        <!-- SVG icon: speaker + muted slash. Visibility controlled by CSS classes -->
+        <svg class="music-svg" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <g class="icon-speaker">
+                <path d="M3 10v4h4l5 5V5L7 10H3z" fill="currentColor" />
+            </g>
+            <g class="icon-wave">
+                <path d="M16.5 8.5c.9.9 1.5 2.1 1.5 3.5s-.6 2.6-1.5 3.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M19 6c1.7 1.7 2.8 4 2.8 6s-1.1 4.3-2.8 6" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.8"/>
+            </g>
+            <g class="icon-muted">
+                <path d="M2 2l20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </g>
+        </svg>
+    </button>
 </body>
 
 </html>
