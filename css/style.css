@@ -173,7 +173,8 @@ section {
     background-attachment: fixed, fixed, scroll;
     background-size: auto, auto, contain;
     text-align: center;
-    padding: 6rem 2rem;
+    /* reducir padding-top para subir el contenido sin solapar la foto */
+    padding: 3.5rem 2rem 6rem;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -186,13 +187,15 @@ section {
 #inicio::before {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 45%;
-    height: 100%;
-    background: url('../img/foto_javi_laura_cancun_bw.jpeg') center top / cover no-repeat;
+    /* desplazar la foto ligeramente hacia abajo y reducir altura para evitar que el título tape la cara */
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 88%;
+    background: url('../img/foto_javi_laura_cancun_bw.jpeg') center 65% / cover no-repeat;
     background-attachment: scroll;
-    opacity: 0.3;
+    opacity: 0.40;
     z-index: 0;
     pointer-events: none;
 }
@@ -205,6 +208,8 @@ section {
 #inicio h1 {
     font-size: 4.5rem;
     color: var(--color-accent-light);
+    /* quitar margen negativo: controlamos la posición con padding del contenedor */
+    margin-top: 0;
     margin-bottom: 0.5rem;
     animation: slideInDown 0.8s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -311,30 +316,8 @@ section p {
 }
 
 /* ===== Sección Galería ===== */
-#galeria {
-    padding: 4rem 2rem;
-}
 
-.galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.galeria img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.galeria img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.15);
-}
+/* Galería eliminada - estilos removidos */
 
 /* ===== Sección Confirmación ===== */
 #confirmacion {
@@ -441,12 +424,13 @@ footer p {
     }
 
     #inicio {
-        padding: 4rem 1rem;
+        padding: 2.5rem 1rem 4.5rem;
         min-height: 70vh;
     }
 
     #inicio h1 {
         font-size: 3rem;
+        margin-top: 0;
     }
 
     #inicio p:first-of-type {
@@ -468,13 +452,10 @@ footer p {
     }
 
     .galeria {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+        /* galería eliminada en tablet */
     }
 
-    .galeria img {
-        height: 250px;
-    }
+    /* .galeria img removed */
 
     section {
         padding: 2rem 1rem;
@@ -503,6 +484,7 @@ footer p {
     #inicio h1 {
         font-size: 2.2rem;
         margin-bottom: 0.5rem;
+        margin-top: 0;
     }
 
     #inicio h1::after {
@@ -539,13 +521,10 @@ footer p {
     }
 
     .galeria {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
+        /* galería eliminada en móvil */
     }
 
-    .galeria img {
-        height: 200px;
-    }
+    /* .galeria img removed */
 
     section {
         padding: 1.5rem 1rem;
@@ -739,7 +718,8 @@ body.intro-active {
     right: 10%;
     height: 55%;
     background: #f8f1e6;
-    clip-path: polygon(0 0, 100% 0, 50% 82%);
+    /* usar punta completa para evitar rombo en la punta al rotar */
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top center;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
     z-index: 2;
@@ -753,13 +733,34 @@ body.intro-active {
     content: '';
     position: absolute;
     inset: 7%;
+    /* forro damasco: asegurar que cubre todo y se alinea centrado */
     background-image: url('../img/damasco.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     clip-path: inherit;
-    backface-visibility: visible;
-    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transform: rotateX(180deg) translateZ(0);
     /* cara interior para cuando el flap se abre */
+}
+
+/* añadir pseudo para dar borde/relieve a la solapa (triángulo) */
+.intro-envelope-flap::after {
+    content: '';
+    position: absolute;
+    /* hacerlo un poco más grande que la solapa para crear un contorno */
+    top: -3%;
+    left: -3%;
+    width: 106%;
+    height: 106%;
+    clip-path: inherit;
+    background: #f2eadf; /* color leve para el borde/relieve */
+    z-index: 1;
+    pointer-events: none;
+    transform-origin: center;
+    /* drop-shadow respeta la transparencia del clip-path y crea un contorno triangular */
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.28));
+    /* ligera línea interior para definir el borde */
+    box-shadow: inset 0 0 0 1px rgba(58,13,23,0.12);
 }
 
 /* === ANIMACIONES === */
@@ -864,5 +865,16 @@ body.intro-active {
 
     .intro-date {
         font-size: 0.85rem;
+    }
+}
+
+/* Ajustes para la foto en móviles: centrar y ocupar más ancho */
+@media (max-width: 768px) {
+    #inicio::before {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-position: center center;
+        opacity: 0.28;
     }
 }
