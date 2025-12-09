@@ -10,6 +10,7 @@
   const VIDEO_ID = 'jFHnQDV2_aM';
   let player = null;
   let isReady = false;
+  let userInteracted = false; // si el usuario ha pulsado el botón, no sobrescribir su elección
   const toggle = () => document.getElementById('music-toggle');
 
   // Estado persistente
@@ -44,6 +45,8 @@
 
           // Tras un breve retardo comprobamos si está reproduciendo; si no, ponemos estado muted visual
           setTimeout(function(){
+            // Si el usuario ya interactuó (pulsó durante la intro), respetamos su elección
+            if (userInteracted) return;
             try{
               var st = player.getPlayerState();
               if(st === YT.PlayerState.PLAYING){
@@ -61,6 +64,8 @@
           }, 700);
         },
         onStateChange: function(e){
+          // Si el usuario ya ha interactuado no sobreescribimos su elección
+          if (userInteracted) return;
           // Si finaliza (no ocurre con loop), actualizar estado
           if(e.data === YT.PlayerState.PAUSED){ setButtonState(false); savePlaying(false); }
           if(e.data === YT.PlayerState.PLAYING){ setButtonState(true); savePlaying(true); }
@@ -123,7 +128,8 @@
     const btn = document.getElementById('music-toggle');
     if(!btn) return;
     btn.addEventListener('click', function(e){
-      // user gesture: play/pause
+      // user gesture: marcar interacción y play/pause
+      userInteracted = true;
       toggleMusic();
     });
 
