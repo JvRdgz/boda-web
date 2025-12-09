@@ -195,7 +195,7 @@ section {
     transform: translateX(-50%);
     width: 60%;
     height: 88%;
-    background: url('../img/foto_javi_laura_cancun_bw.jpeg') center 65% / cover no-repeat;
+    background: url('../img/9.png') center 65% / cover no-repeat;
     background-attachment: scroll;
     opacity: 0.40;
     z-index: 0;
@@ -268,18 +268,6 @@ section:nth-child(even) {
 
 section p {
     text-align: justify;
-}
-
-/* ===== Sección Historia ===== */
-#historia {
-    padding: 4rem 2rem;
-}
-
-#historia p {
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
-    text-align: center;
-    font-size: 1.1rem;
 }
 
 /* ===== Sección Evento ===== */
@@ -399,6 +387,55 @@ footer {
     border-top: 3px solid var(--color-accent);
 }
 
+/* ===== Botón flotante de música (simple, altavoz granate, tachado cuando está apagado) ===== */
+#music-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: 2px solid rgba(138, 45, 63, 0.12);
+    color: var(--color-accent); /* controla el color del icono (SVG usa currentColor) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    cursor: pointer;
+    z-index: 1200;
+    padding: 0;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#music-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(138,45,63,0.08);
+    transform: translateY(-2px);
+}
+
+#music-toggle .music-svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+/* Por defecto ocultamos las ondas y la raya de mute; se mostrarán según la clase del botón */
+#music-toggle .icon-wave { display: none; }
+#music-toggle .icon-muted { display: none; }
+
+/* Estado: música activa -> mostrar ondas, ocultar raya */
+#music-toggle.music-on .icon-wave { display: block; }
+#music-toggle.music-on .icon-muted { display: none; }
+
+/* Estado: música inactiva -> ocultar ondas, mostrar raya (tachado) */
+#music-toggle.music-off .icon-wave { display: none; }
+#music-toggle.music-off .icon-muted { display: block; }
+
+/* Ajustes visuales para trazos del SVG (cuando se muestra la raya, que sea claramente visible) */
+#music-toggle .icon-muted path { stroke: currentColor; stroke-width: 2; }
+
+
 footer p {
     color: var(--color-primary);
     margin: 0;
@@ -452,12 +489,6 @@ footer p {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-
-    .galeria {
-        /* galería eliminada en tablet */
-    }
-
-    /* .galeria img removed */
 
     section {
         padding: 2rem 1rem;
@@ -521,12 +552,6 @@ footer p {
     .event-card {
         padding: 1.5rem;
     }
-
-    .galeria {
-        /* galería eliminada en móvil */
-    }
-
-    /* .galeria img removed */
 
     section {
         padding: 1.5rem 1rem;
