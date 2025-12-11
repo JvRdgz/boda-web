@@ -102,16 +102,10 @@ header {
 }
 
 /* Header actions (botón blanco/negro) */
-.header-actions {
-    /* Fijado en la esquina inferior izquierda (opuesto al botón de música) */
-    position: fixed;
-    left: 18px;
-    bottom: 22px;
-    top: auto;
-    z-index: 1200;
-}
-
 .bw-toggle {
+    position: fixed;
+    left: 20px;
+    bottom: 22px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -126,6 +120,7 @@ header {
     font-family: var(--font-elegant);
     font-weight: 600;
     transition: var(--transition);
+    z-index: 1200;
 }
 
 .bw-toggle:hover {

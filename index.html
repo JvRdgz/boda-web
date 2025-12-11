@@ -32,16 +32,6 @@
                 <li><a href="#confirmacion">Confirmación</a></li>
             </ul>
         </nav>
-        <div class="header-actions">
-            <button id="bw-toggle" class="bw-toggle" aria-pressed="false" aria-label="Alternar blanco y negro">
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-                    <g>
-                        <circle cx="12" cy="12" r="9" fill="#000" />
-                        <path d="M12 3a9 9 0 0 1 0 18V3z" fill="#fff" />
-                    </g>
-                </svg>
-            </button>
-        </div>
     </header>
 
     <main>
@@ -102,6 +92,16 @@
     <!-- JS separado -->
     <script src="js/music.js" defer></script>
     <script src="js/main.js" defer></script>
+
+    <!-- Botón flotante blanco/negro (tema) -->
+    <button id="bw-toggle" class="bw-toggle" aria-pressed="false" aria-label="Alternar blanco y negro">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+            <g>
+                <circle cx="12" cy="12" r="9" fill="#000" />
+                <path d="M12 3a9 9 0 0 1 0 18V3z" fill="#fff" />
+            </g>
+        </svg>
+    </button>
 
     <!-- Botón flotante de música -->
     <button id="music-toggle" class="music-off" aria-pressed="false" aria-label="Reproducir / Silenciar música de fondo">
