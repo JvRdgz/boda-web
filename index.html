@@ -8,7 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link id="theme-link" rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -32,23 +32,49 @@
                 <li><a href="#confirmacion">Confirmación</a></li>
             </ul>
         </nav>
+        <div class="header-actions">
+            <button id="bw-toggle" class="bw-toggle" aria-pressed="false" aria-label="Alternar blanco y negro">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                    <g>
+                        <circle cx="12" cy="12" r="9" fill="#000" />
+                        <path d="M12 3a9 9 0 0 1 0 18V3z" fill="#fff" />
+                    </g>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <main>
         <section id="inicio">
             <h1>Javier & Laura</h1>
             <p>¡Nos casamos!</p>
-            <p>03 DE OCTUBRE DE 2026</p>
+            <p>03 de octubre de 2026</p>
         </section>
 
         <section id="evento">
             <h2>Detalles del Evento</h2>
-            <h3>Ceremonia</h3>
-            <p>Lugar: Iglesia de San Ildefonso, Zamora.</p>
-            <p>Hora: 17:00</p>
-            <h3>Celebración</h3>
-            <p>Lugar: Hacienda Zorita, Salamanca</p>
-            <p>Hora: 19:00</p>
+            <div class="event-details">
+                <div class="event-card">
+                    <img src="img/iglesia.png" alt="Iglesia de San Ildefonso" class="event-card-image">
+                    <div class="event-card-content">
+                        <h3>Ceremonia</h3>
+                        <p>Lugar: Iglesia de San Ildefonso, Zamora.</p>
+                        <p>Dirección: Plaza de Fray Diego de Deza</p>
+                        <p>Hora: 17:00</p>
+                        <a href="https://maps.app.goo.gl/94a2vMeDKrAKK34o8" target="_blank" class="map-button">Ver en Maps</a>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <img src="img/zorita2.jpg" alt="Hacienda Zorita" class="event-card-image">
+                    <div class="event-card-content">
+                        <h3>Celebración</h3>
+                        <p>Lugar: Hacienda Zorita, Salamanca</p>
+                        <p>Dirección: SA-300, km 10, 37115 Valverdón, Salamanca</p>
+                        <p>Hora: 19:00</p>
+                        <a href="https://maps.app.goo.gl/2By2uXfSwvQKGAMS6" target="_blank" class="map-button">Ver en Maps</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="confirmacion">
@@ -72,6 +98,7 @@
 
     <!-- Player de YouTube API (para música de fondo) -->
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/theme-toggle.js" defer></script>
     <!-- JS separado -->
     <script src="js/music.js" defer></script>
     <script src="js/main.js" defer></script>
