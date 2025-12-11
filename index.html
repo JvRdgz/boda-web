@@ -8,6 +8,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
+    <!-- Preload recursos críticos para mejorar LCP -->
+    <link rel="preload" as="image" href="img/damasco.png">
+    <link rel="preload" as="image" href="img/foto_javi_laura_cancun_bw.jpeg">
     <link id="theme-link" rel="stylesheet" href="css/style.css">
 </head>
 
@@ -45,7 +48,7 @@
             <h2>Detalles del Evento</h2>
             <div class="event-details">
                 <div class="event-card">
-                    <img src="img/iglesia.png" alt="Iglesia de San Ildefonso" class="event-card-image">
+                    <img src="img/iglesia.png" alt="Iglesia de San Ildefonso" class="event-card-image" loading="lazy" width="400" height="280">
                     <div class="event-card-content">
                         <h3>Ceremonia</h3>
                         <p>Lugar: Iglesia de San Ildefonso, Zamora.</p>
@@ -55,7 +58,7 @@
                     </div>
                 </div>
                 <div class="event-card">
-                    <img src="img/zorita2.jpg" alt="Hacienda Zorita" class="event-card-image">
+                    <img src="img/zorita2.jpg" alt="Hacienda Zorita" class="event-card-image" loading="lazy" width="400" height="280">
                     <div class="event-card-content">
                         <h3>Celebración</h3>
                         <p>Lugar: Hacienda Zorita, Salamanca</p>
