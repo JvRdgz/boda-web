@@ -73,14 +73,52 @@
 
         <section id="confirmacion">
             <h2>Confirmación de Asistencia</h2>
-            <form>
-                <input type="text" placeholder="Tu nombre y apellidos" required>
-                <select required>
-                    <option value="" disabled selected hidden>¿Asistirás?</option>
-                    <option value="si">Sí, asistiré</option>
-                    <option value="no">No podré asistir</option>
-                </select>
-                <button type="submit">Confirmar</button>
+            <form id="rsvp-form" class="form-grid">
+                <div id="form-success" class="form-success" role="status" aria-live="polite" style="display:none;" tabindex="-1"></div>
+                <div class="form-row full">
+                    <label for="guest-name">Tu nombre y apellidos</label>
+                    <input id="guest-name" name="guest_name" type="text" placeholder="Tu nombre y apellidos" required>
+                </div>
+                <div class="form-row half">
+                    <label for="attendance">¿Asistirás?</label>
+                    <select id="attendance" name="attendance" required>
+                        <option value="" disabled selected hidden>¿Asistirás?</option>
+                        <option value="si">Sí, asistiré</option>
+                        <option value="no">No podré asistir</option>
+                    </select>
+                </div>
+                <div class="form-row half">
+                    <label for="partner-attendance">¿Vendrá tu pareja?</label>
+                    <select id="partner-attendance" name="partner_attendance">
+                        <option value="" disabled selected hidden>Selecciona una opción</option>
+                        <option value="si">Sí, vendrá</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="form-row full" id="partner-name-row" style="display:none;">
+                    <label for="partner-name">Nombre y apellidos de la pareja</label>
+                    <input id="partner-name" name="partner_name" type="text" placeholder="Nombre y apellidos de tu acompañante">
+                </div>
+
+                <fieldset class="form-row full">
+                    <legend>Autobús (opcional)</legend>
+                    <div>
+                        <input type="checkbox" id="bus-ida" name="bus_ida">
+                        <label for="bus-ida">Autobús de ida a Hacienda Zorita</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="bus-vuelta" name="bus_vuelta">
+                        <label for="bus-vuelta">Autobús de vuelta a Zamora</label>
+                    </div>
+                    <div id="bus-warning" class="form-warning" role="alert" aria-live="polite" style="display:none;">
+                        <strong>Aviso:</strong> Si te vas a alojar la noche de la boda (03 de octubre) en Hacienda Zorita, no habrá autobús de vuelta a Zamora al día siguiente. Recomendamos ir en coche a Hacienda Zorita tras la ceremonia (así podréis volver directamente al día siguiente), o coordinad con alguien que pueda llevaros de vuelta a Zamora. Si vienes en tren a Zamora, lo más práctico es alojarte en hoteles de Zamora y usar el autobús de vuelta.
+                    </div>
+                </fieldset>
+
+                <div class="form-row full">
+                    <button type="submit">Confirmar</button>
+                </div>
             </form>
         </section>
 
@@ -109,6 +147,7 @@
     <!-- JS separado -->
     <script src="js/music.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/form.js" defer></script>
 
     <!-- Botón flotante blanco/negro (tema) -->
     <button id="bw-toggle" class="bw-toggle" aria-pressed="false" aria-label="Alternar blanco y negro">
@@ -136,6 +175,19 @@
             </g>
         </svg>
     </button>
+
+    <!-- Modal de confirmación (popup) -->
+    <div id="confirm-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
+        <div class="modal-overlay" data-close="true"></div>
+        <div class="modal-panel" role="document" aria-labelledby="confirm-modal-title">
+            <h3 id="confirm-modal-title">Revisa tu confirmación</h3>
+            <div id="confirm-modal-body" class="modal-body"></div>
+            <div class="modal-actions">
+                <button id="modal-confirm" class="btn-confirm">Confirmar</button>
+                <button id="modal-cancel" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
