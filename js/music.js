@@ -49,11 +49,12 @@
             if (userInteracted) return;
             try{
               var st = player.getPlayerState();
-              if(st === YT.PlayerState.PLAYING){
+              // Por defecto mostramos el botón DESACTIVADO, solo restauramos a 'playing' si el usuario
+              // había dejado la música como activada previamente (loadPlaying() === true).
+              if(loadPlaying() && st === YT.PlayerState.PLAYING){
                 setButtonState(true);
                 savePlaying(true);
               } else {
-                // reproducción bloqueada por el navegador: mostrar botón en estado "muted" (necesita interacción)
                 setButtonState(false);
                 savePlaying(false);
               }
@@ -134,7 +135,8 @@
     });
 
     // establecer estado inicial visual según almacenamiento
-    if(loadPlaying()) setButtonState(true);
+    // Mostrar siempre DESACTIVADO por defecto; si el usuario pulsa lo guardamos.
+    setButtonState(false);
   });
 
 })();
