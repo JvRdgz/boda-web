@@ -1,0 +1,97 @@
+/* Formato compartido para #rsvp-form y campos — idéntico en ambos temas */
+#rsvp-form {
+    /* layout & sizing (theme colors are provided via variables in the theme files) */
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.25rem;
+    border-radius: 10px;
+    background: var(--form-bg, linear-gradient(180deg, rgba(245,230,211,0.6), rgba(245,230,211,0.5)));
+    box-shadow: var(--form-shadow, 0 8px 30px rgba(0,0,0,0.18));
+    border: 1px solid var(--form-border, rgba(58,13,23,0.06));
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+}
+
+.form-row {
+    display: block;
+}
+
+.form-row.full { grid-column: 1 / -1; }
+
+label {
+    color: var(--color-text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+/* scope inputs to the RSVP form so other forms aren't affected */
+#rsvp-form input[type="text"],
+#rsvp-form select,
+#rsvp-form textarea {
+    height: 44px;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--form-input-border, rgba(138,45,63,0.16));
+    background: var(--form-input-bg, rgba(255,255,255,0.85));
+    color: var(--form-text-color, var(--color-text-dark));
+    font-size: 0.98rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#rsvp-form input::placeholder, #rsvp-form textarea::placeholder { color: var(--form-placeholder, rgba(58,13,23,0.3)); }
+
+#rsvp-form select { appearance: auto; }
+
+#rsvp-form input:focus, #rsvp-form select:focus, #rsvp-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 6px 18px rgba(58,13,23,0.08);
+}
+
+fieldset.form-row {
+    padding: 0.9rem 0.9rem 0.6rem 0.9rem;
+}
+
+fieldset.form-row > div { margin-bottom: 0.6rem; display:flex; align-items:center; gap:0.6rem; }
+/* allow checkboxes and their labels to wrap on narrow screens */
+fieldset.form-row > div { flex-wrap: wrap; }
+fieldset.form-row > div label { margin-left: 0.2rem; margin-right: 0.6rem; }
+
+input[type="checkbox"]{ width: 18px; height: 18px; }
+
+.form-warning { margin-top: 0.5rem; }
+
+.form-row button[type="submit"] {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    border: none;
+    box-shadow: var(--form-button-shadow, 0 6px 20px rgba(58,13,23,0.12));
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.form-row button[type="submit"]:hover { background: var(--color-accent-light); transform: translateY(-2px); }
+
+@media (min-width: 720px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .form-row.half { grid-column: auto; }
+    .form-row.full { grid-column: 1 / -1; }
+    fieldset.form-row { grid-column: 1 / -1; }
+    /* use max-width instead of fixed width so the button stays responsive */
+    .form-row.full button[type="submit"] { width: auto; max-width: 260px; justify-self: start; }
+}
+
+@media (max-width: 420px) {
+    #rsvp-form { padding: 1rem; }
+    input[type="text"], select { height: 44px; }
+}

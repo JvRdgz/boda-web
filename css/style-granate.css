@@ -13,6 +13,19 @@
     --font-body: 'Lato', 'Arial', sans-serif;
     --transition: all 0.3s ease;
     --color-overlay: rgba(101, 43, 41, 0.75); /* overlay granate semitransparente */
+    /* Fondo del modal (respetar la paleta del tema) */
+    /* Modal should invert: fondo granate y texto/beige para el tema granate */
+    --modal-bg: linear-gradient(180deg, rgba(58,13,23,0.97), rgba(58,13,23,0.93));
+    --form-text-color: var(--color-primary);
+    /* modal-specific color tokens to keep modal matching theme (panel granate, text beige) */
+    --modal-confirm-bg: var(--color-accent);      /* botón Confirmar: beige sobre fondo granate */
+    --modal-confirm-color: var(--color-primary);  /* texto del botón Confirmar: granate */
+    --modal-confirm-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    /* modal text and cancel button contrast for granate theme */
+    --modal-text-color: var(--color-text-dark);  /* contenido del modal en beige */
+    --modal-title-color: var(--color-accent-light); /* título en beige claro */
+    --modal-cancel-color: var(--color-accent);   /* cancelar en beige */
+    --modal-cancel-border: rgba(212,165,116,0.18); /* borde beige suave */
 }
 
 /* ===== Reset y Estilos Base ===== */
@@ -101,44 +114,7 @@ header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Header actions (botón blanco/negro) */
-.bw-toggle {
-    position: fixed;
-    left: 20px;
-    bottom: 22px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    height: 36px;
-    padding: 6px 10px;
-    background: transparent;
-    border: 2px solid var(--color-accent);
-    color: var(--color-accent);
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: var(--font-elegant);
-    font-weight: 600;
-    transition: var(--transition);
-    z-index: 1200;
-}
-
-.bw-toggle:hover {
-    transform: translateY(-2px);
-}
-
-.bw-toggle.bw-on {
-    background: var(--color-accent);
-    color: var(--color-primary);
-}
-
-.bw-toggle:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(212,165,116,0.12);
-}
-
-/* SVG inside toggle */
-.bw-toggle svg { width: 18px; height: 18px; display: block; }
+/* Header actions (botón blanco/negro) removed — theme is fixed to granate */
 
 nav ul {
     list-style: none;
@@ -473,6 +449,23 @@ footer {
     padding: 2rem;
     margin-top: 2rem;
     border-top: 3px solid var(--color-accent);
+}
+
+/* Theme variables for the RSVP form (layout lives in form.css) */
+#rsvp-form {
+    --form-bg: linear-gradient(180deg, rgba(245,230,211,0.12), rgba(245,230,211,0.08));
+    --form-border: rgba(212,165,116,0.06);
+    --form-shadow: 0 8px 30px rgba(0,0,0,0.28);
+    --form-input-bg: rgba(255,255,255,0.94);
+    --form-input-border: rgba(245,230,211,0.14);
+    --form-text-color: var(--color-primary);
+    --form-placeholder: rgba(58,13,23,0.25);
+    --form-button-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+@media (max-width: 420px) {
+    #rsvp-form { padding: 1rem; }
+    input[type="text"], select { height: 44px; }
 }
 
 /* ===== Botón flotante de música (simple, altavoz granate, tachado cuando está apagado) ===== */
@@ -1101,4 +1094,112 @@ body.intro-active {
 
 @media (max-width: 480px) {
     #music-toggle { right: 12px; bottom: 18px; width:48px; height:48px; }
+}
+
+/* ===== Estética especial para sección de Autobuses (tema granate) ===== */
+/* Hace que el bloque sea una tarjeta suave, con opciones más destacadas */
+fieldset.form-row {
+    /* Estilo acorde a las secciones 'Ceremonia' / 'Celebración' */
+    background: linear-gradient(135deg, rgba(101, 43, 41, 0.9) 0%, rgba(128, 73, 62, 0.9) 100%);
+    padding: 1rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(212, 165, 116, 0.08);
+    border-left: 5px solid var(--color-accent);
+    transition: var(--transition);
+}
+
+fieldset.form-row legend {
+    /* Mantener estilo visual, pero con peso de fuente normal como el resto de la web */
+    font-weight: 400;
+    color: var(--color-accent-light);
+    padding: 0 0.5rem;
+    margin-left: 0.25rem;
+    font-size: 1rem;
+}
+
+/* Opciones: fila alineada, con hover sutil y espacio */
+fieldset.form-row > div {
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+    padding: 0.5rem 0.35rem;
+    border-radius: 8px;
+    transition: background 0.12s ease, transform 0.08s ease;
+}
+fieldset.form-row > div:hover { background: rgba(255,255,255,0.04); transform: translateY(-1px); }
+
+/* Checkbox más grande y con color de acento (beige) */
+fieldset.form-row input[type="checkbox"] {
+    width: 20px; height: 20px; appearance: auto; accent-color: var(--color-accent);
+    border-radius: 4px;
+}
+
+/* Label con tipografía clara y peso, cambia cuando está seleccionado */
+fieldset.form-row label {
+    color: var(--color-text-dark);
+    /* Alineamos el peso al resto de la página */
+    font-weight: 400;
+}
+fieldset.form-row input[type="checkbox"]:checked + label {
+    color: var(--color-accent-light);
+}
+
+/* Primer aviso estilizado específico para autobuses */
+/* Aviso de autobús: diseño similar a las tarjetas de evento */
+#bus-warning.form-warning {
+    /* Fondo beige fuerte; el texto en granate como solicitado */
+    background-color: var(--color-beige-dark);
+    /* Borde izquierdo granate más visible */
+    border-left: 6px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.95rem 1rem;
+    border-radius: 6px;
+    /* Añadimos una sombra externa granate sutil para dar más presencia */
+    box-shadow: 0 8px 24px rgba(58,13,23,0.12), inset 0 0 10px rgba(0,0,0,0.12);
+    position: relative;
+    /* Texto en peso normal; el <strong> dentro del aviso seguirá en negrita */
+    font-weight: 400;
+    font-size: 0.98rem;
+    display: block;
+    transition: var(--transition) transform 160ms ease;
+}
+
+/* Estado hover para dar mayor énfasis al aviso */
+#bus-warning.form-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(58,13,23,0.18), inset 0 0 12px rgba(0,0,0,0.12);
+}
+
+/* Add an inline exclamation icon via pseudo-element */
+/* icono más discreto para el aviso */
+#bus-warning.form-warning::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    /* icono: fondo del círculo en granate y símbolo en beige claro para contraste */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='%233a0d17'/><path d='M11 7h2v6h-2zM11 15h2v2h-2z' fill='%23e8c9a8'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+#bus-warning.form-warning strong { color: var(--color-primary); font-weight: 800; }
+
+@keyframes bus-warning-appear {
+    from { transform: translateY(8px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 420px) {
+    #bus-warning.form-warning { padding: 0.85rem 0.9rem; font-size: 0.95rem; }
+    #bus-warning.form-warning::before { width: 30px; height: 30px; margin-right: 0.5rem; }
+}
+
+@media (max-width: 420px) {
+    fieldset.form-row > div { padding: 0.45rem 0.25rem; }
+    fieldset.form-row legend { font-size: 0.95rem; }
 }
