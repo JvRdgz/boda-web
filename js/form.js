@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function(){
   const attendance = document.getElementById('attendance');
   const successBox = document.getElementById('form-success');
   const STORAGE_KEY = 'boda_rsvp_draft';
+  // Configuración para envío a Google Sheets via Apps Script
+  // Sustituye por tu URL de despliegue y el token secreto que fijes en el Apps Script
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxdbWLXNggaOO2QzfjG0uy_Ietsj2WtUcQROOM0WhwukgMNUW6T0qWCPGlPHxTNpYBI0w/exec'; // e.g. 'https://script.google.com/macros/s/XXX/exec'
+  const SHEET_TOKEN = 'JYL_rsvp_2025_x9f8a7c6d'; // token secreto para validar peticiones
 
   if(partnerSelect){
     partnerSelect.addEventListener('change', function(){
@@ -161,37 +165,70 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function handleConfirm(){
-    // Simular trabajo de backend: mostrar estado y luego mostrar confirmación dentro del modal
+    // Enviar datos al backend (Google Apps Script). Si no está configurado, se simula como antes.
     if(modalConfirmBtn) modalConfirmBtn.disabled = true;
     if(modalCancelBtn) modalCancelBtn.disabled = true;
     modalBody.innerHTML = '<p>Guardando tu confirmación…</p>';
-    // breve retardo simulado
-    setTimeout(function(){
+
+    // Construir objeto con los datos a enviar
+    const payload = {
+      guest_name: guestInput ? guestInput.value.trim() : '',
+      attendance: attendance ? attendance.value : '',
+      partner_attendance: partnerSelect ? partnerSelect.value : '',
+      partner_name: partnerInput ? partnerInput.value.trim() : '',
+      bus_ida: busIda ? !!busIda.checked : false,
+      bus_vuelta: busVuelta ? !!busVuelta.checked : false,
+      timestamp: new Date().toISOString()
+    };
+
+    // Helper: realiza el POST al Apps Script (si está configurado)
+    function postToSheet(data){
+      if(!SHEET_ENDPOINT) return Promise.resolve({ok:true, simulated:true});
+      return fetch(SHEET_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-SHEET-TOKEN': SHEET_TOKEN
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json().catch(()=>{ return {ok: res.ok}; }));
+    }
+
+    postToSheet(payload).then(function(res){
+      // si la petición falla o la respuesta indica error, mostrar mensaje
+      if(!res || (res.ok === false)){
+        modalBody.innerHTML = '<p class="error"><strong>No hemos podido guardar tu confirmación.</strong> Por favor, intenta de nuevo más tarde.</p>' + lastSummaryHtml;
+        if(modalConfirmBtn){ modalConfirmBtn.disabled = false; modalConfirmBtn.textContent = 'Reintentar'; }
+        if(modalCancelBtn){ modalCancelBtn.disabled = false; modalCancelBtn.style.display = ''; }
+        return;
+      }
+
+      // Éxito: limpiar borrador y deshabilitar el formulario
       try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
       Array.from(form.elements).forEach(el => el.disabled = true);
       const submitBtn = form.querySelector('button[type="submit"]');
       if(submitBtn) submitBtn.textContent = 'Confirmado ✅';
 
-      // Mostrar éxito dentro del modal junto al resumen
       modalState = 'done';
       modalBody.innerHTML = '<p><strong>¡Gracias! Tu confirmación ha sido registrada.</strong></p>' + lastSummaryHtml;
-
-      // Ajustar acciones: ocultar cancelar y convertir confirmar en Cerrar
       if(modalCancelBtn) modalCancelBtn.style.display = 'none';
       if(modalConfirmBtn){
         modalConfirmBtn.disabled = false;
         modalConfirmBtn.textContent = 'Cerrar';
-        // quitar listener de confirm y asignar cierre
         modalConfirmBtn.removeEventListener('click', handleConfirm);
         modalConfirmBtn.addEventListener('click', handleCloseOnce);
         modalConfirmBtn.focus();
       }
 
-      // quitar posibilidad de cerrar por overlay para evitar cierres accidentales en pantalla final
       const overlay = modal.querySelector('.modal-overlay');
       if(overlay) overlay.removeEventListener('click', handleCancelOnce);
 
-    }, 800);
+    }).catch(function(err){
+      console.error('Error enviando a sheet:', err);
+      modalBody.innerHTML = '<p class="error"><strong>Error al guardar.</strong> Por favor, revisa tu conexión e inténtalo de nuevo.</p>' + lastSummaryHtml;
+      if(modalConfirmBtn){ modalConfirmBtn.disabled = false; modalConfirmBtn.textContent = 'Reintentar'; }
+      if(modalCancelBtn){ modalCancelBtn.disabled = false; modalCancelBtn.style.display = ''; }
+    });
   }
 
   function handleCloseOnce(){ handleClose(); }
