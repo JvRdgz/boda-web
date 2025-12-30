@@ -34,6 +34,7 @@
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#evento">Evento</a></li>
+                <li><a href="#informacion">Información</a></li>
                 <li><a href="#confirmacion">Confirmación</a></li>
                 <li><a href="#regalo">Con mucho cariño</a></li>
             </ul>
@@ -46,6 +47,8 @@
             <p>¡Nos casamos!</p>
             <p>03 de Octubre de 2026</p>
         </section>
+
+        <!-- Información de interés movida: se añadirá después de 'Evento' -->
 
         <section id="evento">
             <h2>Detalles del Evento</h2>
@@ -68,6 +71,43 @@
                         <p>Dirección: SA-300, km 10, 37115 Valverdón, Salamanca</p>
                         <p>Hora: 19:00</p>
                         <a href="https://maps.app.goo.gl/2By2uXfSwvQKGAMS6" target="_blank" class="map-button">Ver en Maps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="informacion">
+            <h2>Información de interés</h2>
+            <div class="event-details info-details">
+                <div class="event-card info-card" data-key="hoteles" tabindex="0" role="button" aria-pressed="false">
+                    <div class="event-card-content">
+                        <h3>Hoteles</h3>
+                        <p>Hoteles recomendados y tarifas especiales si indicas "boda Laura y Javier" al reservar.</p>
+                        <button class="map-button small info-open" data-key="hoteles">Ver detalles</button>
+                    </div>
+                </div>
+
+                <div class="event-card info-card" data-key="peluquerias" tabindex="0" role="button" aria-pressed="false">
+                    <div class="event-card-content">
+                        <h3>Peluquerías y maquillaje</h3>
+                        <p>Peluquerías y estilistas recomendados en Zamora.</p>
+                        <button class="map-button small info-open" data-key="peluquerias">Ver detalles</button>
+                    </div>
+                </div>
+
+                <div class="event-card info-card" data-key="bares" tabindex="0" role="button" aria-pressed="false">
+                    <div class="event-card-content">
+                        <h3>Bares de tapas</h3>
+                        <p>Los mejores bares para tapeo por la ciudad.</p>
+                        <button class="map-button small info-open" data-key="bares">Ver detalles</button>
+                    </div>
+                </div>
+
+                <div class="event-card info-card" data-key="restaurantes" tabindex="0" role="button" aria-pressed="false">
+                    <div class="event-card-content">
+                        <h3>Restaurantes</h3>
+                        <p>Restaurantes recomendados, de lo más sabroso de Zamora.</p>
+                        <button class="map-button small info-open" data-key="restaurantes">Ver detalles</button>
                     </div>
                 </div>
             </div>
@@ -170,6 +210,17 @@
     </button>
 
     <!-- Modal de confirmación (popup) -->
+    <!-- Modal de Información (popup para las tarjetas) -->
+    <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-overlay" data-close="true"></div>
+        <div class="modal-panel" role="document" aria-labelledby="info-modal-title">
+            <h3 id="info-modal-title">Información</h3>
+            <div id="info-modal-body" class="modal-body"></div>
+            <div class="modal-actions">
+                <button id="info-modal-close" class="btn-confirm">Cerrar</button>
+            </div>
+        </div>
+    </div>
     <div id="confirm-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-overlay" data-close="true"></div>
         <div class="modal-panel" role="document" aria-labelledby="confirm-modal-title">
