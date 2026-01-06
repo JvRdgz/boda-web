@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const busIda = document.getElementById('bus-ida');
     const busVuelta = document.getElementById('bus-vuelta');
     const busWarning = document.getElementById('bus-warning');
+    const foodAllergens = document.getElementById('food-allergens');
+    const allergensRow = document.getElementById('allergens-row');
+    const allergensDetail = document.getElementById('allergens-detail');
+    const foodVegetarian = document.getElementById('food-vegetarian');
     const form = document.getElementById('rsvp-form');
     const guestInput = document.getElementById('guest-name');
     const attendance = document.getElementById('attendance');
@@ -43,6 +47,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    if (foodAllergens) {
+        foodAllergens.addEventListener('change', function () {
+            if (foodAllergens.checked) {
+                allergensRow.style.display = '';
+                allergensDetail.setAttribute('required', 'required');
+                allergensDetail.focus();
+            } else {
+                allergensRow.style.display = 'none';
+                allergensDetail.removeAttribute('required');
+                allergensDetail.value = '';
+                allergensDetail.setCustomValidity('');
+            }
+            saveDraft();
+        });
+    }
+
     // Guardado automático de borrador en localStorage
     function saveDraft() {
         const data = {
@@ -51,7 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
             partner_attendance: partnerSelect ? partnerSelect.value : '',
             partner_name: partnerInput ? partnerInput.value : '',
             bus_ida: busIda ? !!busIda.checked : false,
-            bus_vuelta: busVuelta ? !!busVuelta.checked : false
+            bus_vuelta: busVuelta ? !!busVuelta.checked : false,
+            food_allergens: foodAllergens ? !!foodAllergens.checked : false,
+            allergens_detail: allergensDetail ? allergensDetail.value : '',
+            food_vegetarian: foodVegetarian ? !!foodVegetarian.checked : false
         };
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { }
     }
@@ -67,6 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (partnerInput && data.partner_name) partnerInput.value = data.partner_name;
             if (busIda) busIda.checked = !!data.bus_ida;
             if (busVuelta) busVuelta.checked = !!data.bus_vuelta;
+            if (foodAllergens) foodAllergens.checked = !!data.food_allergens;
+            if (allergensDetail && data.allergens_detail) allergensDetail.value = data.allergens_detail;
+            if (foodVegetarian) foodVegetarian.checked = !!data.food_vegetarian;
 
             // Ajustes visuales según el borrador
             if (partnerSelect && partnerSelect.value === 'si') {
@@ -76,11 +102,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (busIda && busIda.checked) {
                 busWarning.style.display = '';
             }
+            if (foodAllergens && foodAllergens.checked) {
+                allergensRow.style.display = '';
+                allergensDetail.setAttribute('required', 'required');
+            }
         } catch (e) { }
     }
 
     // Guardar al cambiar cualquier campo relevante
-    [guestInput, attendance, partnerSelect, partnerInput, busIda, busVuelta].forEach(el => {
+    [guestInput, attendance, partnerSelect, partnerInput, busIda, busVuelta, foodAllergens, allergensDetail, foodVegetarian].forEach(el => {
         if (!el) return;
         const ev = (el.tagName === 'INPUT' && el.type === 'checkbox') ? 'change' : 'input';
         el.addEventListener(ev, saveDraft);
@@ -103,6 +133,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     partnerInput.setCustomValidity('');
                 }
             }
+            if (foodAllergens && foodAllergens.checked) {
+                if (!allergensDetail.value.trim()) {
+                    allergensDetail.setCustomValidity('Por favor, indica tus alergias o intolerancias.');
+                    allergensDetail.reportValidity();
+                    return;
+                } else {
+                    allergensDetail.setCustomValidity('');
+                }
+            }
 
             // Preparar resumen en HTML (para el modal)
             const lines = [];
@@ -113,6 +152,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             lines.push(`<p><strong>Autobús ida:</strong> ${busIda && busIda.checked ? 'Sí' : 'No'}</p>`);
             lines.push(`<p><strong>Autobús vuelta:</strong> ${busVuelta && busVuelta.checked ? 'Sí' : 'No'}</p>`);
+            lines.push(`<p><strong>Alergias/intolerancias:</strong> ${foodAllergens && foodAllergens.checked ? 'Sí' : 'No'}</p>`);
+            if (foodAllergens && foodAllergens.checked) {
+                lines.push(`<p><strong>Detalles:</strong> ${allergensDetail.value ? escapeHtml(allergensDetail.value) : '—'}</p>`);
+            }
+            lines.push(`<p><strong>Menú vegetariano:</strong> ${foodVegetarian && foodVegetarian.checked ? 'Sí' : 'No'}</p>`);
 
             // Mostrar modal con el resumen
             openConfirmModal(lines.join(''));
@@ -178,6 +222,9 @@ document.addEventListener('DOMContentLoaded', function () {
             partner_name: partnerInput ? partnerInput.value.trim() : '',
             bus_ida: busIda ? !!busIda.checked : false,
             bus_vuelta: busVuelta ? !!busVuelta.checked : false,
+            food_allergens: foodAllergens ? !!foodAllergens.checked : false,
+            allergens_detail: allergensDetail ? allergensDetail.value.trim() : '',
+            food_vegetarian: foodVegetarian ? !!foodVegetarian.checked : false,
             timestamp: new Date().toISOString()
         };
 
@@ -251,6 +298,11 @@ document.addEventListener('DOMContentLoaded', function () {
         partnerRow.style.display = 'none';
         partnerInput.removeAttribute('required');
         busWarning.style.display = 'none';
+        allergensRow.style.display = 'none';
+        allergensDetail.removeAttribute('required');
+        allergensDetail.value = '';
+        if (foodAllergens) foodAllergens.checked = false;
+        if (foodVegetarian) foodVegetarian.checked = false;
         if (successBox) { successBox.style.display = 'none'; successBox.innerHTML = ''; }
         try { guestInput.focus(); } catch (e) { }
         closeConfirmModal();

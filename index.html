@@ -158,6 +158,22 @@
                     </div>
                 </fieldset>
 
+                <fieldset class="form-row full">
+                    <legend>Alimentación (opcional)</legend>
+                    <div>
+                        <input type="checkbox" id="food-allergens" name="food_allergens">
+                        <label for="food-allergens">Tengo alergias o intolerancias</label>
+                    </div>
+                    <div id="allergens-row" class="form-textarea" style="display:none;">
+                        <label for="allergens-detail">¿Cuáles?</label>
+                        <textarea id="allergens-detail" name="allergens_detail" rows="3" placeholder="Ej.: frutos secos, marisco, lactosa..."></textarea>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="food-vegetarian" name="food_vegetarian">
+                        <label for="food-vegetarian">Menú vegetariano</label>
+                    </div>
+                </fieldset>
+
                 <div class="form-row full">
                     <button type="submit">Confirmar</button>
                 </div>
