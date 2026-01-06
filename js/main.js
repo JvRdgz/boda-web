@@ -186,18 +186,18 @@ window.addEventListener('load', () => {
             html: `
                 <h4>Hoteles con precio especial</h4>
                 <ul class="info-list">
-                    <li>NH PALACIO DEL DUERO <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=NH+PALACIO+DEL+DUERO+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>AC HOTEL ZAMORA <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=AC+HOTEL+ZAMORA" target="_blank">Ver en Maps</a></li>
-                    <li>HOTEL REY DON SANCHO <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=HOTEL+REY+DON+SANCHO+Zamora" target="_blank">Ver en Maps</a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=NH+PALACIO+DEL+DUERO+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">NH PALACIO DEL DUERO <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=AC+HOTEL+ZAMORA" target="_blank" rel="noopener" title="Abrir en Maps">AC HOTEL ZAMORA <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=HOTEL+REY+DON+SANCHO+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">HOTEL REY DON SANCHO <span class="info-map-icon" aria-hidden="true"></span></a></li>
                 </ul>
                 <h4 style="margin-top:1rem;">Otros hoteles</h4>
                 <ul class="info-list">
-                    <li>Hotel Alda Mercado de Zamora <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Hotel+Alda+Mercado+de+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Parador de Zamora <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Parador+de+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Hotel dos Infantas <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Hotel+dos+Infantas+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Hotel Ares <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Hotel+Ares+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>San Gil Plaza <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=San+Gil+Plaza+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Hostería Real <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Hosteria+Real+Zamora" target="_blank">Ver en Maps</a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Alda+Mercado+de+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Hotel Alda Mercado de Zamora <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Parador+de+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Parador de Zamora <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+dos+Infantas+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Hotel dos Infantas <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Ares+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Hotel Ares <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=San+Gil+Plaza+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">San Gil Plaza <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Hosteria+Real+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Hostería Real <span class="info-map-icon" aria-hidden="true"></span></a></li>
                 </ul>
             `
         },
@@ -205,9 +205,9 @@ window.addEventListener('load', () => {
             title: 'Peluquerías y maquillaje',
             html: `
                 <ul class="info-list">
-                    <li>La pelu de Laura <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=La+pelu+de+Laura+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Leti estilistas <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Leti+estilistas+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Different estilistas <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Different+estilistas+Zamora" target="_blank">Ver en Maps</a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=La+pelu+de+Laura+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">La pelu de Laura <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Leti+estilistas+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Leti estilistas <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Different+estilistas+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Different estilistas <span class="info-map-icon" aria-hidden="true"></span></a></li>
                 </ul>
             `
         },
@@ -215,15 +215,15 @@ window.addEventListener('load', () => {
             title: 'Bares de tapas',
             html: `
                 <ul class="info-list">
-                    <li>Meneses (un poco de todo) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Meneses+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Vinacoteca (ibéricos, queso) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Vinacoteca+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Portillo (de todo) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Portillo+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Caballero (patatas bravas / chipirones) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Caballero+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>El Lobo (pinchos morunos) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=El+Lobo+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Bambú (tiberios) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Bambu+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>El Puente de Aliste (de todo) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=El+Puente+de+Aliste+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Calle de los Herreros (una calle llena de bares) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Calle+de+los+Herreros+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>La Salita <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=La+Salita+Zamora" target="_blank">Ver en Maps</a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Meneses+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Meneses (un poco de todo) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Vinacoteca+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Vinacoteca (ibéricos, queso) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Portillo+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Portillo (de todo) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Caballero+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Caballero (patatas bravas / chipirones) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=El+Lobo+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">El Lobo (pinchos morunos) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Bambu+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Bambú (tiberios) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=El+Puente+de+Aliste+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">El Puente de Aliste (de todo) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Calle+de+los+Herreros+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Calle de los Herreros (una calle llena de bares) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=La+Salita+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">La Salita <span class="info-map-icon" aria-hidden="true"></span></a></li>
                 </ul>
             `
         },
@@ -231,12 +231,12 @@ window.addEventListener('load', () => {
             title: 'Restaurantes',
             html: `
                 <ul class="info-list">
-                    <li>La Sal <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=La+Sal+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>La Baraka (barakas y solomillo al vino tinto) <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=La+Baraka+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Cuzeo <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Cuzeo+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>El Portón <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=El+Porton+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Eusebio <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Eusebio+Zamora" target="_blank">Ver en Maps</a></li>
-                    <li>Casa Mariano <a class="map-button small" href="https://www.google.com/maps/search/?api=1&query=Casa+Mariano+Zamora" target="_blank">Ver en Maps</a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=La+Sal+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">La Sal <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=La+Baraka+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">La Baraka (barakas y solomillo al vino tinto) <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Cuzeo+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Cuzeo <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=El+Porton+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">El Portón <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Eusebio+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Eusebio <span class="info-map-icon" aria-hidden="true"></span></a></li>
+                    <li><a class="info-map-link" href="https://www.google.com/maps/search/?api=1&query=Casa+Mariano+Zamora" target="_blank" rel="noopener" title="Abrir en Maps">Casa Mariano <span class="info-map-icon" aria-hidden="true"></span></a></li>
                 </ul>
             `
         }
@@ -274,18 +274,14 @@ window.addEventListener('load', () => {
     function trapInfoTab(e){
         if(e.key === 'Escape'){ closeInfoModal(); }
         if(e.key !== 'Tab') return;
-        const buttons = Array.from(infoModal.querySelectorAll('button')).filter(b => !b.disabled && b.offsetParent !== null);
-        if(!buttons.length) return;
-        const first = buttons[0], last = buttons[buttons.length-1];
+        const focusable = Array.from(infoModal.querySelectorAll('button, a')).filter(el => !el.disabled && el.offsetParent !== null);
+        if(!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length-1];
         if(e.shiftKey){ if(document.activeElement === first){ e.preventDefault(); last.focus(); } }
         else { if(document.activeElement === last){ e.preventDefault(); first.focus(); } }
     }
 
     // Bind click handlers
-    document.querySelectorAll('.info-open').forEach(btn => {
-        btn.addEventListener('click', function(e){ e.preventDefault(); const k = btn.getAttribute('data-key'); openInfoModal(k); });
-    });
-
     // Make entire card keyboard accessible (enter/space)
     document.querySelectorAll('.info-card').forEach(card => {
         card.addEventListener('click', function(){ const k = card.getAttribute('data-key'); openInfoModal(k); });
