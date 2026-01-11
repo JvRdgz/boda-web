@@ -156,17 +156,54 @@
 
                 <fieldset class="form-row full">
                     <legend>Alimentación (opcional)</legend>
-                    <div>
+                    <div class="food-option">
                         <input type="checkbox" id="food-allergens" name="food_allergens">
                         <label for="food-allergens">Tengo alergias o intolerancias</label>
+                    </div>
+                    <div id="allergens-apply-row" class="food-apply" style="display:none;">
+                        <span class="apply-label">¿A quién aplica?</span>
+                        <label class="apply-option">
+                            <input type="checkbox" id="allergens-apply-guest" name="allergens_apply_guest">
+                            <span class="apply-name" data-role="guest">Invitado principal</span>
+                        </label>
+                        <label class="apply-option apply-partner">
+                            <input type="checkbox" id="allergens-apply-partner" name="allergens_apply_partner">
+                            <span class="apply-name" data-role="partner">Pareja</span>
+                        </label>
                     </div>
                     <div id="allergens-row" class="form-textarea" style="display:none;">
                         <label for="allergens-detail">¿Cuáles?</label>
                         <textarea id="allergens-detail" name="allergens_detail" rows="3" placeholder="Ej.: frutos secos, marisco, lactosa..."></textarea>
                     </div>
-                    <div>
+                    <div class="food-option">
                         <input type="checkbox" id="food-vegetarian" name="food_vegetarian">
                         <label for="food-vegetarian">Menú vegetariano</label>
+                    </div>
+                    <div id="vegetarian-apply-row" class="food-apply" style="display:none;">
+                        <span class="apply-label">¿A quién aplica?</span>
+                        <label class="apply-option">
+                            <input type="checkbox" id="vegetarian-apply-guest" name="vegetarian_apply_guest">
+                            <span class="apply-name" data-role="guest">Invitado principal</span>
+                        </label>
+                        <label class="apply-option apply-partner">
+                            <input type="checkbox" id="vegetarian-apply-partner" name="vegetarian_apply_partner">
+                            <span class="apply-name" data-role="partner">Pareja</span>
+                        </label>
+                    </div>
+                    <div class="food-option">
+                        <input type="checkbox" id="food-vegan" name="food_vegan">
+                        <label for="food-vegan">Menú vegano</label>
+                    </div>
+                    <div id="vegan-apply-row" class="food-apply" style="display:none;">
+                        <span class="apply-label">¿A quién aplica?</span>
+                        <label class="apply-option">
+                            <input type="checkbox" id="vegan-apply-guest" name="vegan_apply_guest">
+                            <span class="apply-name" data-role="guest">Invitado principal</span>
+                        </label>
+                        <label class="apply-option apply-partner">
+                            <input type="checkbox" id="vegan-apply-partner" name="vegan_apply_partner">
+                            <span class="apply-name" data-role="partner">Pareja</span>
+                        </label>
                     </div>
                 </fieldset>
 
