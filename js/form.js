@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const STORAGE_KEY = 'boda_rsvp_draft';
     // Configuración para envío a Google Sheets via Apps Script
     // Sustituye por tu URL de despliegue y el token secreto que fijes en el Apps Script
-    const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxdbWLXNggaOO2QzfjG0uy_Ietsj2WtUcQROOM0WhwukgMNUW6T0qWCPGlPHxTNpYBI0w/exec'; // e.g. 'https://script.google.com/macros/s/XXX/exec'
+    const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHyVenPhEJBa3eB4XG6Fk9u7OJrxcilxN3wzOfoNJcbOMk-R5g8Dv1DiOXkHDXgy83tg/exec'; // e.g. 'https://script.google.com/macros/s/XXX/exec'
     const SHEET_TOKEN = 'JYL_rsvp_2025_x9f8a7c6d'; // token secreto para validar peticiones
 
     if (partnerSelect) {
