@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const STORAGE_KEY = 'boda_rsvp_draft';
     // Configuración para envío a Google Sheets via Apps Script
     // Sustituye por tu URL de despliegue y el token secreto que fijes en el Apps Script
-    const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw_mKtFzX8H1VY_cwfCs5Fap8HHqJvuLzxjt1K5xZdcHyEDs8ZaAbsgL8iaFGpRdRuyow/exec'; // e.j. 'https://script.google.com/macros/s/XXX/exec'
+    const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxpzIHMRUfQe0N0x5hMd-CJD6dcOlu8YJmAKohnj_qQckC-MOiOc-6EgLiFF5RZw2RxMQ/exec'; // e.j. 'https://script.google.com/macros/s/XXX/exec'
     const SHEET_TOKEN = 'JYL_rsvp_2025_x9f8a7c6d'; // token secreto para validar peticiones
 
     if (partnerSelect) {
@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 partnerInput.value = '';
                 partnerInput.setCustomValidity('');
             }
-        updatePartnerApplyVisibility();
-        updateApplyLabels();
-        saveDraft();
-    });
+            updatePartnerApplyVisibility();
+            updateApplyLabels();
+            saveDraft();
+        });
     }
 
     if (busIda) {
@@ -295,25 +295,25 @@ document.addEventListener('DOMContentLoaded', function () {
         modalBody.innerHTML = '<p>Guardando tu confirmación…</p>';
 
         // Construir objeto con los datos a enviar
-            const payload = {
-                guest_name: guestInput ? guestInput.value.trim() : '',
-                attendance: attendance ? attendance.value : '',
-                partner_attendance: partnerSelect ? partnerSelect.value : '',
-                partner_name: partnerInput ? partnerInput.value.trim() : '',
-                bus_ida: busIda ? !!busIda.checked : false,
-                bus_vuelta: busVuelta ? !!busVuelta.checked : false,
-                food_allergens: foodAllergens ? !!foodAllergens.checked : false,
-                allergens_detail: allergensDetail ? allergensDetail.value.trim() : '',
-                food_vegetarian: foodVegetarian ? !!foodVegetarian.checked : false,
-                food_vegan: foodVegan ? !!foodVegan.checked : false,
-                allergens_apply_guest: allergensApplyGuest ? !!allergensApplyGuest.checked : false,
-                allergens_apply_partner: allergensApplyPartner ? !!allergensApplyPartner.checked : false,
-                vegetarian_apply_guest: vegetarianApplyGuest ? !!vegetarianApplyGuest.checked : false,
-                vegetarian_apply_partner: vegetarianApplyPartner ? !!vegetarianApplyPartner.checked : false,
-                vegan_apply_guest: veganApplyGuest ? !!veganApplyGuest.checked : false,
-                vegan_apply_partner: veganApplyPartner ? !!veganApplyPartner.checked : false,
-                timestamp: new Date().toISOString()
-            };
+        const payload = {
+            guest_name: guestInput ? guestInput.value.trim() : '',
+            attendance: attendance ? attendance.value : '',
+            partner_attendance: partnerSelect ? partnerSelect.value : '',
+            partner_name: partnerInput ? partnerInput.value.trim() : '',
+            bus_ida: busIda ? !!busIda.checked : false,
+            bus_vuelta: busVuelta ? !!busVuelta.checked : false,
+            food_allergens: foodAllergens ? !!foodAllergens.checked : false,
+            allergens_detail: allergensDetail ? allergensDetail.value.trim() : '',
+            food_vegetarian: foodVegetarian ? !!foodVegetarian.checked : false,
+            food_vegan: foodVegan ? !!foodVegan.checked : false,
+            allergens_apply_guest: allergensApplyGuest ? !!allergensApplyGuest.checked : false,
+            allergens_apply_partner: allergensApplyPartner ? !!allergensApplyPartner.checked : false,
+            vegetarian_apply_guest: vegetarianApplyGuest ? !!vegetarianApplyGuest.checked : false,
+            vegetarian_apply_partner: vegetarianApplyPartner ? !!vegetarianApplyPartner.checked : false,
+            vegan_apply_guest: veganApplyGuest ? !!veganApplyGuest.checked : false,
+            vegan_apply_partner: veganApplyPartner ? !!veganApplyPartner.checked : false,
+            timestamp: new Date().toISOString()
+        };
 
         // Helper: realiza el POST al Apps Script (si está configurado)
         function postToSheet(data) {
@@ -325,11 +325,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             return fetch(SHEET_ENDPOINT, {
                 method: 'POST',
+                mode: 'no-cors',          // <- clave
                 body
             })
-                .then(res => res.json().catch(() => ({ ok: res.ok })))
+                .then(() => ({ ok: true })) // <- en no-cors la respuesta es "opaque" y no se puede leer
                 .catch(() => ({ ok: false }));
         }
+
 
 
         postToSheet(payload).then(function (res) {
