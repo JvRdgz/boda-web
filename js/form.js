@@ -266,6 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (modalConfirmBtn) {
             modalConfirmBtn.textContent = 'Confirmar';
             modalConfirmBtn.disabled = false;
+            modalConfirmBtn.style.display = '';
             modalConfirmBtn.removeEventListener('click', handleCloseOnce);
             modalConfirmBtn.removeEventListener('click', handleConfirm);
             modalConfirmBtn.addEventListener('click', handleConfirm);
@@ -290,7 +291,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function handleConfirm() {
         // Enviar datos al backend (Google Apps Script). Si no está configurado, se simula como antes.
-        if (modalConfirmBtn) modalConfirmBtn.disabled = true;
+        if (modalConfirmBtn) {
+            modalConfirmBtn.disabled = true;
+            modalConfirmBtn.style.display = 'none';
+        }
         if (modalCancelBtn) modalCancelBtn.disabled = true;
         modalBody.innerHTML = '<p>Guardando tu confirmación…</p>';
 
@@ -338,7 +342,11 @@ document.addEventListener('DOMContentLoaded', function () {
             // si la petición falla o la respuesta indica error, mostrar mensaje
             if (!res || (res.ok === false)) {
                 modalBody.innerHTML = '<p class="error"><strong>No hemos podido guardar tu confirmación.</strong> Por favor, intenta de nuevo más tarde.</p>' + lastSummaryHtml;
-                if (modalConfirmBtn) { modalConfirmBtn.disabled = false; modalConfirmBtn.textContent = 'Reintentar'; }
+                if (modalConfirmBtn) {
+                    modalConfirmBtn.disabled = false;
+                    modalConfirmBtn.textContent = 'Reintentar';
+                    modalConfirmBtn.style.display = '';
+                }
                 if (modalCancelBtn) { modalCancelBtn.disabled = false; modalCancelBtn.style.display = ''; }
                 return;
             }
@@ -357,6 +365,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 modalConfirmBtn.textContent = 'Cerrar';
                 modalConfirmBtn.removeEventListener('click', handleConfirm);
                 modalConfirmBtn.addEventListener('click', handleCloseOnce);
+                modalConfirmBtn.style.display = '';
                 modalConfirmBtn.focus();
             }
 
@@ -366,7 +375,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(function (err) {
             console.error('Error enviando a sheet:', err);
             modalBody.innerHTML = '<p class="error"><strong>Error al guardar.</strong> Por favor, revisa tu conexión e inténtalo de nuevo.</p>' + lastSummaryHtml;
-            if (modalConfirmBtn) { modalConfirmBtn.disabled = false; modalConfirmBtn.textContent = 'Reintentar'; }
+            if (modalConfirmBtn) {
+                modalConfirmBtn.disabled = false;
+                modalConfirmBtn.textContent = 'Reintentar';
+                modalConfirmBtn.style.display = '';
+            }
             if (modalCancelBtn) { modalCancelBtn.disabled = false; modalCancelBtn.style.display = ''; }
         });
     }
