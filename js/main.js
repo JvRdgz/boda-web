@@ -107,19 +107,8 @@ window.addEventListener('load', () => {
 (function () {
     const copyBtn = document.getElementById('copy-account');
     const accEl = document.getElementById('account-number');
-    const status = document.getElementById('copy-status');
 
     if (!copyBtn || !accEl) return;
-
-    const originalBtnText = copyBtn.textContent;
-
-    const showStatus = (text, isSuccess = true) => {
-        // No actualizar el texto al lado del botón; sólo cambiar temporalmente el texto del botón
-        if (copyBtn) copyBtn.textContent = isSuccess ? 'Copiado ✓' : 'Error';
-        setTimeout(() => {
-            if (copyBtn) copyBtn.textContent = originalBtnText;
-        }, 2000);
-    };
 
     const showToast = (text) => {
         const toast = document.createElement('div');
@@ -156,11 +145,9 @@ window.addEventListener('load', () => {
                 document.execCommand('copy');
                 document.body.removeChild(ta);
             }
-            showStatus('¡Copiado!', true);
             showToast('Copiado!');
         } catch (err) {
             console.error('Error copiando al portapapeles:', err);
-            showStatus('Error al copiar', false);
             showToast('Error al copiar');
         }
     };
@@ -293,3 +280,4 @@ window.addEventListener('load', () => {
     infoModalClose && infoModalClose.addEventListener('click', closeInfoModal);
 
 })();
+
