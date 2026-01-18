@@ -42,15 +42,15 @@ La aplicación cubre la gestión de:
 
 ## 3. Estructura del repositorio
 
-├── index.html # Página principal
-├── js/form.js # Lógica del formulario y envío
-├── js/main.js # Navegación y estados
-├── js/music.js # Música ambiental
-├── css/form.css # Estilos del formulario
-├── css/modal.css # Estilos de modales
-├── css/style-granate.css # Tema visual principal
-├── img/... # Imagenes utilizadas
-└── README.md
+- index.html # Página principal
+- js/form.js # Lógica del formulario y envío
+- js/main.js # Navegación y estados
+- js/music.js # Música ambiental
+- css/form.css # Estilos del formulario
+- css/modal.css # Estilos de modales
+- css/style-granate.css # Tema visual principal
+- img/... # Imagenes utilizadas
+- README.md
 
 
 ---
