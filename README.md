@@ -28,29 +28,7 @@ La aplicación cubre la gestión de:
 
 ## 2. Arquitectura general
 
-### 2.1 Diagrama de alto nivel
-
-┌────────────────────┐
-│ Cliente Web │
-│ (GitHub Pages) │
-│ HTML / CSS / JS │
-└─────────┬──────────┘
-│ HTTPS POST
-▼
-┌──────────────────────────┐
-│ Google Apps Script │
-│ Web App (doPost) │
-│ Validación + Lógica │
-└─────────┬────────────────┘
-▼
-┌──────────────────────────┐
-│ Google Sheets │
-│ - Responses │
-│ - Hojas filtradas │
-└──────────────────────────┘
-
-
-### 2.2 Tecnologías utilizadas
+### 2.1 Tecnologías utilizadas
 
 | Componente | Tecnología |
 |----------|-----------|
