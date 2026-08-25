@@ -10,7 +10,7 @@
         rel="stylesheet">
     <!-- Preload recursos críticos para mejorar LCP -->
     <link rel="preload" as="image" href="img/damasco.png">
-    <link rel="preload" as="image" href="img/foto_javi_laura_cancun_bw.jpeg">
+    <link rel="preload" as="image" href="img/9.png">
     <link id="theme-link" rel="stylesheet" href="css/style-granate.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/form.css">
@@ -34,6 +34,7 @@
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#evento">Evento</a></li>
+                <li><a href="#preboda">Preboda</a></li>
                 <li><a href="#descubre-zamora">Descubre Zamora</a></li>
                 <li><a href="#informacion">Información</a></li>
                 <li><a href="#confirmacion">Confirmación</a></li>
@@ -77,6 +78,23 @@
                         <a href="https://maps.app.goo.gl/2By2uXfSwvQKGAMS6" target="_blank" class="map-button">Ver en
                             Maps</a>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section id="preboda">
+            <h2>Preboda</h2>
+            <div class="event-card preboda-card">
+                <div class="preboda-image-wrap">
+                    <img src="img/casino.jpg" alt="Café Casino de Zamora" class="preboda-image" loading="lazy"
+                        width="752" height="390">
+                </div>
+                <div class="event-card-content">
+                    <p class="preboda-eyebrow">Nos vemos antes del gran día</p>
+                    <p class="preboda-datetime">2 de octubre · 20:00 h</p>
+                    <h3>Café Casino de Zamora</h3>
+                    <p class="preboda-address">C. de Sta. Clara, 2<br>49003 Zamora</p>
+                    <a href="https://maps.app.goo.gl/R2Zz2G1qDWH8A9Yt8" target="_blank" rel="noopener"
+                        class="map-button">Ver en Maps</a>
                 </div>
             </div>
         </section>
@@ -342,6 +360,31 @@
             <div class="modal-actions">
                 <button id="modal-confirm" class="btn-confirm">Confirmar</button>
                 <button id="modal-cancel" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Preboda: se abre automáticamente al terminar la animación del sobre -->
+    <div id="preboda-modal" class="modal preboda-modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="preboda-modal-title">
+        <div class="modal-overlay" data-close="true"></div>
+        <div class="modal-panel preboda-modal-panel" role="document">
+            <button type="button" id="preboda-modal-close" class="preboda-modal-close"
+                aria-label="Cerrar">&times;</button>
+            <div class="preboda-modal-inner">
+                <div class="preboda-modal-media">
+                    <img src="img/casino.jpg" alt="Café Casino de Zamora" class="preboda-modal-image" loading="eager"
+                        width="752" height="390">
+                </div>
+                <div class="preboda-modal-body">
+                    <p class="preboda-modal-eyebrow">Nos vemos antes del gran día</p>
+                    <h3 id="preboda-modal-title">Preboda</h3>
+                    <p class="preboda-modal-datetime">2 de octubre · 19:00 h</p>
+                    <p class="preboda-modal-place">Café Casino de Zamora</p>
+                    <p class="preboda-modal-address">C. de Sta. Clara, 2<br>49003 Zamora</p>
+                    <a href="https://maps.app.goo.gl/R2Zz2G1qDWH8A9Yt8" target="_blank" rel="noopener"
+                        class="map-button preboda-modal-cta">Ver en Maps</a>
+                </div>
             </div>
         </div>
     </div>

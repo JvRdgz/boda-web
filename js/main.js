@@ -86,6 +86,8 @@ window.addEventListener('load', () => {
         if (!overlay.parentElement) return;
         document.body.classList.remove('intro-active');
         overlay.remove();
+        // Señal fiable de que la animación del sobre ha terminado por completo
+        window.dispatchEvent(new CustomEvent('bodaIntroFinished'));
     };
 
     // Botón de saltar intro (si lo activas en el HTML)
@@ -279,5 +281,56 @@ window.addEventListener('load', () => {
     infoModal.addEventListener('click', function(e){ if(e.target && e.target.matches('.modal-overlay')) closeInfoModal(); });
     infoModalClose && infoModalClose.addEventListener('click', closeInfoModal);
 
+})();
+
+/* ===== Modal Pre-boda: se abre automáticamente al terminar la animación del sobre ===== */
+(function(){
+    const prebodaModal = document.getElementById('preboda-modal');
+    const prebodaModalClose = document.getElementById('preboda-modal-close');
+
+    if(!prebodaModal) return;
+
+    let _prebodaLastFocused = null;
+    let _prebodaOpened = false; // asegura una única apertura por carga
+
+    function openPrebodaModal(){
+        if(_prebodaOpened) return;
+        _prebodaOpened = true;
+        _prebodaLastFocused = document.activeElement;
+        prebodaModal.setAttribute('aria-hidden','false');
+        document.body.classList.add('modal-open');
+        prebodaModalClose && prebodaModalClose.focus();
+        document.addEventListener('keydown', trapPrebodaTab);
+    }
+
+    function closePrebodaModal(){
+        try{
+            if(_prebodaLastFocused && _prebodaLastFocused.focus) _prebodaLastFocused.focus();
+            if(document.activeElement && prebodaModal.contains(document.activeElement)){
+                try{ document.activeElement.blur(); }catch(e){}
+            }
+        }catch(e){}
+
+        prebodaModal.setAttribute('aria-hidden','true');
+        document.body.classList.remove('modal-open');
+        document.removeEventListener('keydown', trapPrebodaTab);
+    }
+
+    function trapPrebodaTab(e){
+        if(e.key === 'Escape'){ closePrebodaModal(); return; }
+        if(e.key !== 'Tab') return;
+        const focusable = Array.from(prebodaModal.querySelectorAll('button, a')).filter(el => !el.disabled && el.offsetParent !== null);
+        if(!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length-1];
+        if(e.shiftKey){ if(document.activeElement === first){ e.preventDefault(); last.focus(); } }
+        else { if(document.activeElement === last){ e.preventDefault(); first.focus(); } }
+    }
+
+    // Overlay click and close button
+    prebodaModal.addEventListener('click', function(e){ if(e.target && e.target.matches('.modal-overlay')) closePrebodaModal(); });
+    prebodaModalClose && prebodaModalClose.addEventListener('click', closePrebodaModal);
+
+    // Abrir cuando termina realmente la animación del sobre (evento disparado en finishIntro)
+    window.addEventListener('bodaIntroFinished', openPrebodaModal);
 })();
 
